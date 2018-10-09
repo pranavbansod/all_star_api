@@ -1,4 +1,7 @@
 class PlayersController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def index
     @players = Player.all
     json_response(@players)
@@ -6,6 +9,7 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.new(params.require(:player).permit(:name,:position))
+    @player.save
     json_response(@player,:created)
   end
 
