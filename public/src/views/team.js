@@ -4,7 +4,6 @@ let team = require('../models/team');
 
 module.exports = {
     oninit: function () {
-        // console.log("Team On init");
         team.fetchPlayers();
     },
     view: function () {
