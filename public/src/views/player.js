@@ -4,7 +4,7 @@ let team = require('../models/team');
 
 let player = {
     oninit: function (vnode) {
-        team.loadPlayer(vnode.attrs.name)
+        team.loadPlayer(vnode.attrs.id)
     },
     view: function () {
         return m("form",{

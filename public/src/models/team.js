@@ -11,10 +11,10 @@ let team = {
             team.players = players;
         })
     },
-    loadPlayer: function (name) {
+    loadPlayer: function (id) {
         return m.request({
             method: "GET",
-            url: `/player/${name}`,
+            url: `/player/${id}`,
         })
             .then(function (result) {
                 team.current = result;

@@ -7,5 +7,5 @@ let Player = require('./views/player.js');
 m.route(document.body,"/team",{
     "/team": Team,
     "/addPlayer": AddPlayer,
-    "/player/:name": Player
+    "/player/:id": Player
 });

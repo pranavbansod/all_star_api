@@ -14,7 +14,7 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find_by_name(params[:name])
+    @player = Player.find(params[:id])
     json_response(@player)
   end
 
