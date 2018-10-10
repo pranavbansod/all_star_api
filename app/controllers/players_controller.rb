@@ -13,6 +13,10 @@ class PlayersController < ApplicationController
     json_response(@player,:created)
   end
 
+  def show
+    @player = Player.find_by_name(params[:name])
+    json_response(@player)
+  end
 
   private
   def json_response(object,status=:ok)
