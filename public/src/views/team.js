@@ -9,7 +9,7 @@ module.exports = {
     view: function () {
         return [
             m('h1', 'Real Madrid'),
-            m('button', {href: '/addPlayer', oncreate: m.route.link}, "+"),
+            m('button', {href: '/newPlayer', oncreate: m.route.link}, "+"),
             m('.player-list', team.players.map(function (player) {
                 return  [m('a',{href:'/player/' + player.id, oncreate: m.route.link},player.name),m('br')];
             }))
