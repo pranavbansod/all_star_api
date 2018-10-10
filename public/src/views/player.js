@@ -2,17 +2,16 @@ let m = require('mithril');
 let team = require('../models/team');
 
 
+function redirectToHome() {
+    window.location = '/'
+}
+
 let player = {
     oninit: function (vnode) {
         team.loadPlayer(vnode.attrs.id)
     },
     view: function () {
-        return m("form",{
-            onsubmit : function (e) {
-                e.preventDefault();
-                team.savePlayer();
-            }
-        }, [
+        return [
             m("label.label", "Number"),
             m("input.input[type=text][placeholder=Number]", {
                 oninput: m.withAttr("value", function (num) {
@@ -34,13 +33,19 @@ let player = {
                 }),
                 value: team.player.position
             }),
-            m("button.button[type=submit]", "Save"),
+            m("button.button[type=submit]",{
+                onclick:function () {
+                    team.savePlayer();
+                    redirectToHome();
+                }
+            }, "Save"),
             m("button.button",{
                 onclick:function () {
                     team.deletePlayer();
+                    redirectToHome();
                 }
             },"Delete")
-        ])
+        ]
     }
 };
 
