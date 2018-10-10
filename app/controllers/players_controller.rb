@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
 
   protect_from_forgery except: :index
 
-  before_action :set_player, only: [:show,:update]
+  before_action :set_player, only: [:show,:update,:destroy]
 
   def index
     @players = Player.all
@@ -21,6 +21,11 @@ class PlayersController < ApplicationController
 
   def update
     @player.update(params.require(:player).permit(:number,:name,:position))
+    json_response(@player)
+  end
+
+  def destroy
+    @player.destroy
   end
 
   private

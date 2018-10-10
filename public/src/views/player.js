@@ -16,25 +16,30 @@ let player = {
             m("label.label", "Number"),
             m("input.input[type=text][placeholder=Number]", {
                 oninput: m.withAttr("value", function (num) {
-                    team.current.number = num
+                    team.player.number = num
                 }),
-                value:team.current.number
+                value:team.player.number
             }),
             m("label.label", "Name"),
             m("input.input[placeholder=Name]", {
                 oninput: m.withAttr("value", function (name) {
-                    team.current.name = name
+                    team.player.name = name
                 }),
-                value: team.current.name
+                value: team.player.name
             }),
             m("label.label", "Position"),
             m("input.input[placeholder=Position]", {
                 oninput: m.withAttr("value", function (pos) {
-                    team.current.position = pos
+                    team.player.position = pos
                 }),
-                value: team.current.position
+                value: team.player.position
             }),
             m("button.button[type=submit]", "Save"),
+            m("button.button",{
+                onclick:function () {
+                    team.deletePlayer();
+                }
+            },"Delete")
         ])
     }
 };

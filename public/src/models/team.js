@@ -1,7 +1,7 @@
 let m = require('mithril');
 
 let team = {
-    current:'',
+    player:'',
     players: [],
     fetchPlayers: function () {
         return m.request({
@@ -17,7 +17,7 @@ let team = {
             url: `/player/${id}`,
         })
             .then(function (result) {
-                team.current = result;
+                team.player = result;
             })
     },
     addPlayer: function (number, name, position) {
@@ -30,8 +30,14 @@ let team = {
     savePlayer:function () {
         return m.request({
             method: 'put',
-            url:`/players/${team.current.id}`,
-            data:team.current
+            url:`/players/${team.player.id}`,
+            data:team.player
+        })
+    },
+    deletePlayer:function () {
+        return m.request({
+            method:'delete',
+            url:`/players/${team.player.id}`
         })
     }
 };
