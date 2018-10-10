@@ -4,10 +4,15 @@ let team = require('../models/team');
 
 let player = {
     oninit: function (vnode) {
-        team.load(vnode.attrs.name)
+        team.loadPlayer(vnode.attrs.name)
     },
     view: function () {
-        return m("form", [
+        return m("form",{
+            onsubmit : function (e) {
+                e.preventDefault();
+                // team.savePlayer();
+            }
+        }, [
             m("label.label", "Number"),
             m("input.input[type=text][placeholder=Number]", {
                 oninput: m.withAttr("value", function (num) {
@@ -27,7 +32,7 @@ let player = {
                 oninput: m.withAttr("value", function (pos) {
                     team.current.position = pos
                 }),
-                value: team.current.name
+                value: team.current.position
             }),
             m("button.button[type=submit]", "Save"),
         ])
