@@ -2,6 +2,8 @@ class PlayersController < ApplicationController
 
   protect_from_forgery except: :index
 
+  before_action :set_player, only: [:show,:update]
+
   def index
     @players = Player.all
     json_response(@players)
@@ -14,12 +16,19 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
     json_response(@player)
+  end
+
+  def update
+    @player.update(params.require(:player).permit(:number,:name,:position))
   end
 
   private
   def json_response(object,status=:ok)
     render json: object, status: status
+  end
+
+  def set_player
+    @player = Player.find(params[:id])
   end
 end

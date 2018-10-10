@@ -26,6 +26,13 @@ let team = {
             url: '/players',
             data: {'player': {'number': number, 'name': name, 'position': position}},
         })
+    },
+    savePlayer:function () {
+        return m.request({
+            method: 'put',
+            url:`/players/${team.current.id}`,
+            data:team.current
+        })
     }
 };
 

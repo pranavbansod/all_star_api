@@ -10,7 +10,7 @@ let player = {
         return m("form",{
             onsubmit : function (e) {
                 e.preventDefault();
-                // team.savePlayer();
+                team.savePlayer();
             }
         }, [
             m("label.label", "Number"),
