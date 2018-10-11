@@ -23,7 +23,7 @@ RSpec.describe 'AllStar API', type: :request do
   describe 'POST /players' do
 
     before do
-      post '/players', params: {player: {:name => 'Pranav', :position => 'GK'}}
+      post '/players', params: {player: {:number=>01,:name => 'Pranav', :position => 'GK'}}
     end
 
     it 'should create a new player' do
