@@ -53,4 +53,23 @@ RSpec.describe 'AllStar API', type: :request do
       expect(json['name']).not_to be_empty
     end
   end
+
+  describe 'DELETE /team/:id (Delete a team)' do
+
+    before do
+      delete '/teams/1'
+      delete '/teams/2'
+    end
+
+    it 'should return 204 status code' do
+      expect(response).to have_http_status(204)
+    end
+
+    it 'should have 8 teams remaining' do
+      get '/teams'
+      json = JSON.parse(response.body)
+      expect(json).not_to be_empty
+      expect(json.size).to eq(8)
+    end
+  end
 end
