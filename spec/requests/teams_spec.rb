@@ -3,7 +3,23 @@ require 'rails_helper'
 RSpec.describe 'AllStar API', type: :request do
   let!(:teams) {create_list(:team, 10)}
 
-  describe 'GET /teams' do
+  describe 'POST /teams (Create team)' do
+
+    before do
+      post '/teams', params: {team: {:rank => 01, :name => 'Real Madrid', :league =>'Liga BBVA'}}
+    end
+
+    it 'should create a new team' do
+      json = JSON.parse(response.body)
+      expect(json['name']).to eq('Real Madrid')
+    end
+
+    it 'returns status code 201' do
+      expect(response).to have_http_status(201)
+    end
+  end
+
+  describe 'GET /teams (Show all teams)' do
 
     before do
       get '/teams'
@@ -20,19 +36,21 @@ RSpec.describe 'AllStar API', type: :request do
     end
   end
 
-  describe 'POST /teams' do
+  describe 'GET /teams/:id (Show a particular team)' do
 
     before do
-      post '/teams', params: {team: {:rank => 01, :name => 'Real Madrid', :league =>'Liga BBVA'}}
+      get '/teams/1'
     end
 
-    it 'should create a new team' do
+    it 'should return 200 status code' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should return a team by id 1 ' do
       json = JSON.parse(response.body)
-      expect(json['name']).to eq('Real Madrid')
-    end
-
-    it 'returns status code 201' do
-      expect(response).to have_http_status(201)
+      expect(json).not_to be_empty
+      expect(json['id']).to eq(1)
+      expect(json['name']).not_to be_empty
     end
   end
 end

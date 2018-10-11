@@ -6,7 +6,7 @@ let team = {
     fetchPlayers: function () {
         return m.request({
             method: 'get',
-            url: 'players'
+            url: '/players'
         }).then(function (players) {
             team.players = players;
         })

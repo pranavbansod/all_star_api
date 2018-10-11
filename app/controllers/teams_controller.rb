@@ -9,6 +9,11 @@ class TeamsController < ApplicationController
     json_response(@team,:created)
   end
 
+  def show
+    @team = Team.find(params[:id])
+    json_response(@team)
+  end
+
   private
   def json_response(object,status = :ok)
     render json: object, status: status
