@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'AllStar API', type: :request do
+RSpec.describe 'Team API', type: :request do
   let!(:teams) {create_list(:team, 10)}
 
   describe 'POST /teams (Create team)' do
@@ -54,7 +54,7 @@ RSpec.describe 'AllStar API', type: :request do
     end
   end
 
-  describe 'DELETE /team/:id (Delete a team)' do
+  describe 'DELETE /teams/:id (Delete a team)' do
 
     before do
       delete '/teams/1'
@@ -70,6 +70,31 @@ RSpec.describe 'AllStar API', type: :request do
       json = JSON.parse(response.body)
       expect(json).not_to be_empty
       expect(json.size).to eq(8)
+    end
+  end
+
+  describe 'PUT /teams/:id (Update a team)' do
+
+    before do
+      put '/teams/1', params: {team: {:rank => 01, :name => 'Raimon Eleven', :league =>'Japan'}}
+    end
+
+    it 'should return 204 status code' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'should update team with id 1' do
+      get '/teams/1'
+      json = JSON.parse(response.body)
+      expect(json['name']).to eq('Raimon Eleven')
+      expect(json['league']).to eq('Japan')
+    end
+
+    it 'should not add team' do
+      get '/teams'
+      json = JSON.parse(response.body)
+      expect(json).not_to be_empty
+      expect(json.size).to eq(10)
     end
   end
 end

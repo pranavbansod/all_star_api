@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
 
-  before_action :set_team, only: [:show,:destroy]
+  before_action :set_team, only: [:show,:destroy,:update]
 
   def index
     @teams = Team.all
@@ -8,7 +8,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(params.require(:team).permit(:rank,:name,:league))
+    @team = Team.new(team_params)
     json_response(@team,:created)
   end
 
@@ -20,7 +20,17 @@ class TeamsController < ApplicationController
     @team.destroy
   end
 
+  def update
+    @team.update(team_params)
+    json_response(@team)
+  end
+
   private
+
+  def team_params
+    params.require(:team).permit(:rank,:name,:league)
+  end
+
   def json_response(object,status = :ok)
     render json: object, status: status
   end
