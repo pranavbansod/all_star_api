@@ -29,7 +29,8 @@ let newPlayer = {
             m("br"),
             m("button.button[type=submit]",{
                 onclick:function () {
-                    team.addPlayer(newPlayer.number,newPlayer.name,newPlayer.position)
+                    team.addPlayer(newPlayer.number,newPlayer.name,newPlayer.position);
+                    window.location = '/'
                 }
             }, "Save"),
         ]

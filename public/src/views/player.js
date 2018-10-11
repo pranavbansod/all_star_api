@@ -33,6 +33,7 @@ let player = {
                 }),
                 value: team.player.position
             }),
+            m('br'),
             m("button.button[type=submit]",{
                 onclick:function () {
                     team.savePlayer();
