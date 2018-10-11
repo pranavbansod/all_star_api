@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   root :to => redirect('/index.html')
   get '/player/:id', :to => 'players#show'
   get '/index.html', :to => redirect('/index.html')
-  resources :teams,:players
+  resources :teams do
+    resources :players
+  end
 end
