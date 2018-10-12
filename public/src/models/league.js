@@ -15,6 +15,12 @@ let league = {
             url:'/teams'
         }).then(function (result) {
             league.teams = result;
+            league.sortTeamsByRank();
+        })
+    },
+    sortTeamsByRank:function () {
+        league.teams.sort(function (teamA, teamB) {
+            return teamA.rank - teamB.rank
         })
     }
 };

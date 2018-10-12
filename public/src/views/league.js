@@ -10,12 +10,12 @@ let league = {
         return [
             m('h1', 'Champions League'),
             m('button', {href: '/addTeam', oncreate: m.route.link}, "+"),
-            m('ol', League.teams.map(function (team) {
+            m('div', League.teams.map(function (team) {
                 return m('li',m('a', {
                     href: '/teams/' + team.id,
                     oncreate: m.route.link,
                     type: 'number'
-                },team.name))
+                },team.rank + "   " + team.name))
             }))
         ]
     }

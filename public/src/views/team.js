@@ -9,6 +9,10 @@ module.exports = {
     view: function () {
         return [
             m('h1', team.rank + "  -  " + team.name + "  -  " + team.league),
+            m('button',{onclick:function () {
+                    team.delete();
+                    window.location = '/';
+                }},"Delete")
         ];
 
     }
