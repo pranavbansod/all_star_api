@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-def player_params(name, number, position)
+def player_params(number,name, position)
   {player: {:number => number, :name => name, :position => position}}
 end
 
 def add_player_to_team(team_id,number, name, position)
-  post "/teams/#{team_id}/players", params: player_params(name, number, position)
+  post "/teams/#{team_id}/players", params: player_params(number, name, position)
 end
 
 RSpec.describe 'Player API', type: :request do
@@ -67,6 +67,14 @@ RSpec.describe 'Player API', type: :request do
       expect(json['number']).to eq(7)
     end
 
+    it 'should not return Somesh if the team id is 2' do
+      get '/teams/2/players/1'
+
+      json = JSON.parse(response.body)
+      expect(response).to have_http_status(404)
+      expect(json['error']).to eq('No player with id 1 in team with team id 2')
+    end
+
     it 'should return a player with number 11 from team 2' do
       get '/teams/2/players/2'
 
@@ -93,6 +101,12 @@ RSpec.describe 'Player API', type: :request do
       expect(json['name']).to eq('Somesh')
 
       put '/teams/1/players/1', params: player_params(7,'Ronaldo','LW')
+
+      get '/teams/1/players/1'
+
+      json = JSON.parse(response.body)
+      expect(json['name']).to eq('Ronaldo')
+
     end
 
   end

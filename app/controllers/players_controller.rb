@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   protect_from_forgery except: :index
 
   before_action :set_team
-  before_action :set_player, only: [:show,:update,:destroy]
+  before_action :set_player, only: [:show, :update, :destroy]
 
   def index
     @players = Player.find_by_sql "SELECT * FROM players WHERE team_id = #{@team.id}"
@@ -13,11 +13,17 @@ class PlayersController < ApplicationController
   def create
     @player = @team.players.new(player_params)
     @player.save
-    json_response(@player,:created)
+    json_response(@player, :created)
   end
 
   def show
-    json_response(@player)
+    player_id = @player.as_json['team_id']
+    team_id = @team.as_json['id']
+    if team_id != player_id
+      json_response({error: "No player with id #{player_id} in team with team id #{team_id}"}, 404)
+    else
+      json_response(@player)
+    end
   end
 
   def update
@@ -35,7 +41,7 @@ class PlayersController < ApplicationController
     params.require(:player).permit(:number, :name, :position)
   end
 
-  def json_response(object,status=:ok)
+  def json_response(object, status = :ok)
     render json: object, status: status
   end
 
