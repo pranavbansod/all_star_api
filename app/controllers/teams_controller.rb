@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token
+
   before_action :set_team, only: [:show,:destroy,:update]
 
   def index
@@ -9,6 +11,7 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    @team.save
     json_response(@team,:created)
   end
 

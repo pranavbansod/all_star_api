@@ -10,8 +10,15 @@ RSpec.describe 'Team API', type: :request do
     end
 
     it 'should create a new team' do
+      get '/teams/11'
+
       json = JSON.parse(response.body)
       expect(json['name']).to eq('Real Madrid')
+
+      get '/teams'
+
+      json = JSON.parse(response.body)
+      expect(json.size).to eq(11)
     end
 
     it 'returns status code 201' do

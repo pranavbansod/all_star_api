@@ -1,11 +1,15 @@
 const m = require("mithril");
 
-let Team = require('./views/team.js');
-let newPlayer = require('./views/newPlayer.js');
-let Player = require('./views/player.js');
+let league = require('./views/league');
+let addTeam = require('./views/addTeam.js');
+let team = require('./views/team.js');
+let addPlayer = require('./views/addPlayer.js');
+let player = require('./views/player.js');
 
-m.route(document.body,"/team",{
-    "/team": Team,
-    "/newPlayer": newPlayer,
-    "/player/:id": Player
+m.route(document.body,"/league",{
+    "/league":league,
+    "/addTeam":addTeam,
+    "/team": team,
+    "/newPlayer": addPlayer,
+    "/player/:id": player
 });
