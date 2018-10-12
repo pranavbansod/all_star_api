@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Team API', type: :request do
   let!(:teams) {create_list(:team, 10)}
 
-  describe 'POST /teams (Create team)' do
+  describe "POST /teams (Create team)" do
 
     before do
       post '/teams', params: {team: {:rank => 01, :name => 'Real Madrid', :league =>'Liga BBVA'}}
@@ -19,7 +19,7 @@ RSpec.describe 'Team API', type: :request do
     end
   end
 
-  describe 'GET /teams (Show all teams)' do
+  describe "GET /teams (Show all teams)" do
 
     before do
       get '/teams'
@@ -36,7 +36,7 @@ RSpec.describe 'Team API', type: :request do
     end
   end
 
-  describe 'GET /teams/:id (Show a particular team)' do
+  describe "GET /teams/:id (Show a particular team)" do
 
     before do
       get '/teams/1'
@@ -54,7 +54,7 @@ RSpec.describe 'Team API', type: :request do
     end
   end
 
-  describe 'DELETE /teams/:id (Delete a team)' do
+  describe "DELETE /teams/:id (Delete a team)" do
 
     before do
       delete '/teams/1'
@@ -73,7 +73,7 @@ RSpec.describe 'Team API', type: :request do
     end
   end
 
-  describe 'PUT /teams/:id (Update a team)' do
+  describe "PUT /teams/:id (Update a team)" do
 
     before do
       put '/teams/1', params: {team: {:rank => 01, :name => 'Raimon Eleven', :league =>'Japan'}}

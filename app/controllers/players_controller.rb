@@ -17,32 +17,39 @@ class PlayersController < ApplicationController
   end
 
   def show
-    player_id = @player.as_json['team_id']
-    team_id = @team.as_json['id']
-    if team_id != player_id
-      json_response({error: "No player with id #{player_id} in team with team id #{team_id}"}, 404)
+    if player_not_in_team
+      player_not_found
     else
       json_response(@player)
     end
   end
 
   def update
-    @player.update(player_params)
-    json_response(@player)
+    if player_not_in_team
+      player_not_found
+    else
+      @player.update(player_params)
+      json_response(@player)
+    end
+
   end
 
   def destroy
-    player_id = @player.as_json['team_id']
-    team_id = @team.as_json['id']
-    if team_id != player_id
-      json_response({error: "No player with id #{player_id} in team with team id #{team_id}"}, 404)
+    if player_not_in_team
+      player_not_found
     else
       @player.destroy
-      json_response({message:"Player deleted"},200)
+      json_response({message: "Player deleted"}, 200)
     end
   end
 
   private
+
+  def player_not_in_team
+    player_id = @player.as_json['team_id']
+    team_id = @team.as_json['id']
+    team_id != player_id
+  end
 
   def player_params
     params.require(:player).permit(:number, :name, :position)
@@ -59,4 +66,10 @@ class PlayersController < ApplicationController
   def set_player
     @player = Player.find(params[:id])
   end
+end
+
+private
+
+def player_not_found
+  json_response({error: "No player with id #{@player[:team_id]} in team with team id #{@team[:id]}"}, 404)
 end

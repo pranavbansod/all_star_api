@@ -107,6 +107,13 @@ RSpec.describe 'Player API', type: :request do
       json = JSON.parse(response.body)
       expect(json['name']).to eq('Ronaldo')
     end
+
+    it 'should not update player 2 if team id is sent wrong' do
+      put '/teams/1/players/2', params: player_params(7,'Ronaldo','LW')
+
+      json = JSON.parse(response.body)
+      expect(json['error']).to eq('No player with id 2 in team with team id 1')
+    end
   end
 
   describe "DELETE /teams/:team_id/players/id  - Delete a player" do
