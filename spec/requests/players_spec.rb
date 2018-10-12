@@ -1,7 +1,11 @@
 require 'rails_helper'
 
+def player_params(name, number, position)
+  {player: {:number => number, :name => name, :position => position}}
+end
+
 def add_player_to_team(team_id,number, name, position)
-  post "/teams/#{team_id}/players", params: {player: {:number => number, :name => name, :position => position}}
+  post "/teams/#{team_id}/players", params: player_params(name, number, position)
 end
 
 RSpec.describe 'Player API', type: :request do
@@ -46,7 +50,7 @@ RSpec.describe 'Player API', type: :request do
     end
   end
 
-  describe 'GET /teams/:team_id/players/:id  - Show a player' do
+  describe 'GET /teams/:team_id/players/:id  - Show a specific player' do
 
     before do
       add_player_to_team(1,7, 'Somesh', 'LW')
@@ -72,5 +76,24 @@ RSpec.describe 'Player API', type: :request do
       expect(json['number']).to eq(11)
       expect(json['name']).to eq('Vaibhav')
     end
+  end
+
+  describe 'PUT /teams/:team_id/players/:id  - Update a player' do
+
+    before do
+      add_player_to_team(1,7, 'Somesh', 'LW')
+      add_player_to_team(2,11, 'Vaibhav', 'RW')
+    end
+
+    it 'should update player 1 name from Somesh to Ronaldo' do
+
+      get '/teams/1/players/1'
+
+      json = JSON.parse(response.body)
+      expect(json['name']).to eq('Somesh')
+
+      put '/teams/1/players/1', params: player_params(7,'Ronaldo','LW')
+    end
+
   end
 end
