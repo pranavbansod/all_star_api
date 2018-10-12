@@ -32,7 +32,14 @@ class PlayersController < ApplicationController
   end
 
   def destroy
-    @player.destroy
+    player_id = @player.as_json['team_id']
+    team_id = @team.as_json['id']
+    if team_id != player_id
+      json_response({error: "No player with id #{player_id} in team with team id #{team_id}"}, 404)
+    else
+      @player.destroy
+      json_response({message:"Player deleted"},200)
+    end
   end
 
   private
