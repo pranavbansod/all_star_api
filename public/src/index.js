@@ -9,7 +9,5 @@ let player = require('./views/player.js');
 m.route(document.body,"/league",{
     "/league":league,
     "/addTeam":addTeam,
-    "/team": team,
-    "/newPlayer": addPlayer,
-    "/player/:id": player
+    "/teams/:team_id":team
 });

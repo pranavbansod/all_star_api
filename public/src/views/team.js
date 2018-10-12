@@ -3,16 +3,12 @@ const m = require('mithril');
 let team = require('../models/team');
 
 module.exports = {
-    oninit: function () {
-        team.fetchPlayers();
+    oninit: function (vnode) {
+        team.load(vnode.attrs.team_id);
     },
     view: function () {
         return [
-            m('h1', 'Real Madrid'),
-            m('button', {href: '/newPlayer', oncreate: m.route.link}, "+"),
-            m('.player-list', team.players.map(function (player) {
-                return  [m('a',{href:'/player/' + player.id, oncreate: m.route.link},player.name),m('br')];
-            }))
+            m('h1', team.rank + "  -  " + team.name + "  -  " + team.league),
         ];
 
     }

@@ -14,7 +14,6 @@ let league = {
             method:'get',
             url:'/teams'
         }).then(function (result) {
-            console.log(result);
             league.teams = result;
         })
     }
