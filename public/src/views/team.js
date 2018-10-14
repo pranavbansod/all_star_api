@@ -1,8 +1,10 @@
 const m = require('mithril');
 
 let team = require('../models/team');
+let editTeam = require('./editTeam');
 
-module.exports = {
+let teamView = {
+    editTeamFormVisibility:false,
     oninit: function (vnode) {
         team.load(vnode.attrs.team_id);
     },
@@ -12,8 +14,15 @@ module.exports = {
             m('button',{onclick:function () {
                     team.delete();
                     window.location = '/';
-                }},"Delete")
+                }},"Delete"),
+            m('button',{
+                onclick:function () {
+                    teamView.editTeamFormVisibility=true;
+                }
+            },'Edit'),
+            m(editTeam,{'show':teamView.editTeamFormVisibility})
         ];
 
     }
 };
+module.exports = teamView;
