@@ -1,4 +1,4 @@
-let m = require('mithril');
+const m = require('mithril');
 
 let team = {
     id: '',
@@ -19,7 +19,6 @@ let team = {
 
     },
     update: function () {
-        console.log("Update team");
         return m.request({
             method: 'put',
             url: `/teams/${team.id}`,

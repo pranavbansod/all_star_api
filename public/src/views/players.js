@@ -20,25 +20,19 @@ let players = {
                     return m('tr',
                         [
                             m('td', player.number),
-                            m('td', player.name),
+                            m('td', m('a', {
+                                    href: '/teams/' + team.id + '/players/' + player.id,
+                                    oncreate: m.route.link
+                                }, m('button', player.name))
+                            ),
                             m('td', player.position),
-                            m('td', m('button',{
-                                onclick:function () {
-                                    if (editPlayerForm.display == 'none') {
-                                        editPlayerForm.display = "block";
-                                    } else {
-                                        editPlayerForm.display = "none";
-                                    }
-                                }
-                            }, "Edit")),
                             m('td', m("button", {
                                 onclick: function () {
                                     team.deletePlayer(player.id);
                                 }
                             }, "x"))
                         ])
-                })]),
-            m(editPlayerForm,{'teamId':vnode.attrs.teamId})
+                })])
         ]
     }
 };
