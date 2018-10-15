@@ -44,7 +44,7 @@ let teamView = {
             }, teamView.addPlayerButtonText),
             m(editTeamForm, {'teamId': vnode.attrs.teamId}),
             m(addPlayerForm),
-            m(players)
+            m(players,{'teamId':vnode.attrs.teamId})
         ];
 
     }

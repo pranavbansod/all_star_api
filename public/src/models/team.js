@@ -5,6 +5,7 @@ let team = {
     rank: '',
     name: '',
     league: '',
+    players:[],
     load: function (teamId) {
         return m.request({
             method: 'get',
@@ -30,6 +31,14 @@ let team = {
             method: 'post',
             url: `/teams/${team.id}/players`,
             data: {'player': {'number': number, 'name': name, 'position': position}}
+        })
+    },
+    fetchPlayers:function (teamId) {
+        return m.request({
+            method:'get',
+            url:`/teams/${teamId}/players`
+        }).then(function (result) {
+            team.players = result
         })
     },
     delete: function () {
