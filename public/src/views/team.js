@@ -13,6 +13,10 @@ let teamView = {
     },
     view: function (vnode) {
         return [
+            m('a',{
+                href:'/',
+                oncreate:m.route.link
+            },m('button',"Champions League")),
             m('h1', "Rank:" + team.rank + ",  Name: " + team.name + ",  League: " + team.league),
             m('button', {
                 onclick: function () {
