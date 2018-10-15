@@ -3,6 +3,7 @@ const m = require('mithril');
 let team = require('../models/team');
 let editTeamForm = require('./editTeamForm');
 let addPlayerForm = require('./addPlayerForm');
+let players = require('./players.js');
 
 let teamView = {
     editButtonText: 'Edit',
@@ -12,7 +13,7 @@ let teamView = {
     },
     view: function (vnode) {
         return [
-            m('h1', team.rank + "  -  " + team.name + "  -  " + team.league),
+            m('h1', "Rank:" + team.rank + ",  Name: " + team.name + ",  League: " + team.league),
             m('button', {
                 onclick: function () {
                     team.delete();
@@ -43,6 +44,7 @@ let teamView = {
             }, teamView.addPlayerButtonText),
             m(editTeamForm, {'teamId': vnode.attrs.teamId}),
             m(addPlayerForm),
+            m(players)
         ];
 
     }
