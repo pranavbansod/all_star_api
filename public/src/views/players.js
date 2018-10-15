@@ -14,7 +14,11 @@ let players = {
                 border:"1px solid black",
                 style:"border-collapse:collapse;text-align:center"
             }, [m('tr',[m('th', "Number"),m('th',"Name"),m('th',"Position")]),team.players.map(function (player) {
-            return m('tr', [m('td', player.number),m('td',player.name),m('td',player.position)])
+                return m('tr', [m('td', player.number),m('td',player.name),m('td',player.position),m('td',m("button",{
+                    onclick:function () {
+                        team.deletePlayer(player.id);
+                    }
+                },"x"))])
         })])]
     }
 };

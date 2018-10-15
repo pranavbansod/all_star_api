@@ -46,6 +46,14 @@ let team = {
             method: 'delete',
             url: `/teams/${team.id}`
         })
+    },
+    deletePlayer:function (playerId) {
+        return m.request({
+            method:'delete',
+            url:`/teams/${team.id}/players/${playerId}`
+        }).then(function () {
+            team.fetchPlayers(team.id)
+        })
     }
 };
 
