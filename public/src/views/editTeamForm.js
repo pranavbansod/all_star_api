@@ -3,10 +3,10 @@ const m = require('mithril');
 let team = require('../models/team');
 
 
-let editTeam = {
+let editTeamForm = {
     display: 'none',
     view: function () {
-        return m("div", {style: `display:${editTeam.display}`}, [
+        return m("div", {style: `display:${editTeamForm.display}`}, [
             m("h3", "Edit Team"),
             m("label.label", "Rank"),
             m("input.number.input[type=text][placeholder=Rank]", {
@@ -32,7 +32,7 @@ let editTeam = {
             m("br"),
             m("button.button[type=submit]", {
                 onclick: function () {
-                    editTeam.display = "none";
+                    editTeamForm.display = "none";
                     team.update();
                     location.reload();
                 }
@@ -41,4 +41,4 @@ let editTeam = {
     }
 };
 
-module.exports = editTeam;
+module.exports = editTeamForm;

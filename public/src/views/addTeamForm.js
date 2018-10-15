@@ -2,7 +2,7 @@ const m = require('mithril');
 
 let league = require('../models/league');
 
-let addTeam = {
+let addTeamForm = {
     rank:'',
     name:'',
     league:'',
@@ -13,24 +13,24 @@ let addTeam = {
             m("input.number.input[type=text][placeholder=Rank]",{
                 oninput: m.withAttr('value',function (rank) {
                     this.rank = rank;
-                },addTeam)
+                },addTeamForm)
             }),
             m("label.label", "Name"),
             m("input.name.input[type=text][placeholder=Name]",{
                 oninput: m.withAttr('value',function (name) {
                     this.name = name;
-                },addTeam)
+                },addTeamForm)
             }),
             m("label.label", "League"),
             m("input.position.input[placeholder=League]",{
                 oninput: m.withAttr('value',function (league) {
                     this.league = league;
-                },addTeam)
+                },addTeamForm)
             }),
             m("br"),
             m("button.button[type=submit]",{
                 onclick:function () {
-                    league.addTeam(addTeam.rank,addTeam.name,addTeam.league);
+                    league.addTeam(addTeamForm.rank,addTeamForm.name,addTeamForm.league);
                     window.location = '/'
                 }
             }, "Save"),
@@ -39,4 +39,4 @@ let addTeam = {
 };
 
 
-module.exports = addTeam;
+module.exports = addTeamForm;

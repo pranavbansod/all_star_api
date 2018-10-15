@@ -1,8 +1,8 @@
 const m = require('mithril');
 
 let team = require('../models/team');
-let editTeam = require('./editTeam');
-let newPlayerForm = require('./newPlayerForm');
+let editTeamForm = require('./editTeamForm');
+let addPlayerForm = require('./addPlayerForm');
 
 let teamView = {
     editButtonText: 'Edit',
@@ -21,28 +21,28 @@ let teamView = {
             }, "Delete"),
             m('button', {
                 onclick: function () {
-                    if (editTeam.display == 'none') {
-                        editTeam.display = "block";
+                    if (editTeamForm.display == 'none') {
+                        editTeamForm.display = "block";
                         teamView.editButtonText = 'Cancel';
                     } else {
-                        editTeam.display = "none";
+                        editTeamForm.display = "none";
                         teamView.editButtonText = 'Edit';
                     }
                 }
             }, teamView.editButtonText),
             m("button", {
                 onclick: function () {
-                    if (newPlayerForm.display == 'none') {
-                        newPlayerForm.display = "block";
+                    if (addPlayerForm.display == 'none') {
+                        addPlayerForm.display = "block";
                         teamView.addPlayerButtonText = 'Cancel';
                     } else {
-                        newPlayerForm.display = "none";
+                        addPlayerForm.display = "none";
                         teamView.addPlayerButtonText = 'Add Player';
                     }
                 }
             }, teamView.addPlayerButtonText),
-            m(editTeam, {'teamId': vnode.attrs.teamId}),
-            m(newPlayerForm)
+            m(editTeamForm, {'teamId': vnode.attrs.teamId}),
+            m(addPlayerForm),
         ];
 
     }
