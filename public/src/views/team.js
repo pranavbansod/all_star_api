@@ -2,7 +2,7 @@ const m = require('mithril');
 
 let team = require('../models/team');
 let editTeam = require('./editTeam');
-let addPlayer = require('./addPlayer');
+let newPlayerForm = require('./newPlayerForm');
 
 let teamView = {
     editButtonText: 'Edit',
@@ -32,17 +32,17 @@ let teamView = {
             }, teamView.editButtonText),
             m("button", {
                 onclick: function () {
-                    if (addPlayer.display == 'none') {
-                        addPlayer.display = "block";
+                    if (newPlayerForm.display == 'none') {
+                        newPlayerForm.display = "block";
                         teamView.addPlayerButtonText = 'Cancel';
                     } else {
-                        addPlayer.display = "none";
+                        newPlayerForm.display = "none";
                         teamView.addPlayerButtonText = 'Add Player';
                     }
                 }
             }, teamView.addPlayerButtonText),
             m(editTeam, {'teamId': vnode.attrs.teamId}),
-            m(addPlayer)
+            m(newPlayerForm)
         ];
 
     }

@@ -24,8 +24,14 @@ let team = {
             url: `/teams/${team.id}`,
             data: {'team': {'rank': team.rank, 'name': team.name, 'league': team.league}}
         })
-    }
-    ,
+    },
+    addPlayer: function (number, name, position) {
+        return m.request({
+            method: 'post',
+            url: `/teams/${team.id}/players`,
+            data: {'player': {'number': number, 'name': name, 'position': position}}
+        })
+    },
     delete: function () {
         return m.request({
             method: 'delete',
