@@ -8,7 +8,8 @@ let addPlayer = {
     name: '',
     position: '',
     view: function () {
-        return m('div', {style: `display:${addPlayer.display}`}, [
+        return m("div", {style: `display:${addPlayer.display}`}, [
+            m("h3","Add Player"),
             m("label.label", "Number"),
             m("input.number.input[type=text][placeholder=Number]", {
                 oninput: m.withAttr('value', function (num) {
@@ -31,9 +32,9 @@ let addPlayer = {
             m("button.button[type=submit]", {
                 onclick: function () {
                     addPlayer.display = "none";
-                    // team.addPlayer(addPlayer.number,addPlayer.name,addPlayer.position);
+                    location.reload();
                 }
-            }, "Save"),
+            }, "Add"),
         ])
     }
 };

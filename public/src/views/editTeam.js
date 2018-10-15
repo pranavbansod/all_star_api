@@ -6,8 +6,8 @@ let team = require('../models/team');
 let editTeam = {
     display: 'none',
     view: function () {
-        return m('div', {style: `display:${editTeam.display}`}, [
-            m('h3', "Edit Team"),
+        return m("div", {style: `display:${editTeam.display}`}, [
+            m("h3", "Edit Team"),
             m("label.label", "Rank"),
             m("input.number.input[type=text][placeholder=Rank]", {
                 oninput: m.withAttr("value", function (rank) {
