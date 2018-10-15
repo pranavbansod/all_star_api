@@ -4,7 +4,6 @@ let team = require('../models/team');
 let editTeam = require('./editTeam');
 
 let teamView = {
-    editTeamFormVisibility:false,
     editButtonText :'Edit',
     oninit: function (vnode) {
         team.load(vnode.attrs.teamId);
@@ -18,16 +17,16 @@ let teamView = {
                 }},"Delete"),
             m('button',{
                 onclick: function () {
-                    if (teamView.editTeamFormVisibility == false) {
-                        teamView.editTeamFormVisibility = true;
+                    if (editTeam.display == 'none') {
+                        editTeam.display = "block";
                         teamView.editButtonText = 'Cancel';
                     } else {
-                        teamView.editTeamFormVisibility = false;
+                        editTeam.display = "none";
                         teamView.editButtonText = 'Edit';
                     }
                 }
             },teamView.editButtonText),
-            m(editTeam,{'show':teamView.editTeamFormVisibility,'teamId':vnode.attrs.teamId})
+            m(editTeam,{'teamId':vnode.attrs.teamId})
         ];
 
     }

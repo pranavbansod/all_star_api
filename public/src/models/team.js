@@ -1,14 +1,14 @@
 let m = require('mithril');
 
 let team = {
-    id:'',
-    rank:'',
-    name:'',
-    league:'',
-    load:function (team_id) {
+    id: '',
+    rank: '',
+    name: '',
+    league: '',
+    load: function (teamId) {
         return m.request({
-            method:'get',
-            url:`/teams/${team_id}`
+            method: 'get',
+            url: `/teams/${teamId}`
         }).then(function (res) {
             team.id = res.id;
             team.name = res.name;
@@ -17,10 +17,19 @@ let team = {
         })
 
     },
-    delete:function () {
-        m.request({
-            method:'delete',
-            url:`/teams/${team.id}`
+    update: function () {
+        console.log("Update team");
+        return m.request({
+            method: 'put',
+            url: `/teams/${team.id}`,
+            data: {'team': {'rank': team.rank, 'name': team.name, 'league': team.league}}
+        })
+    }
+    ,
+    delete: function () {
+        return m.request({
+            method: 'delete',
+            url: `/teams/${team.id}`
         })
     }
 };
