@@ -1,9 +1,9 @@
 const m = require("mithril");
 
-let league = require('./views/league');
-let addTeamForm = require('./views/addTeamForm.js');
-let team = require('./views/team.js');
-let editPlayerForm = require('./views/editPlayerForm');
+const league = require('./views/league');
+const addTeamForm = require('./views/addTeamForm.js');
+const team = require('./views/team.js');
+const editPlayerForm = require('./views/editPlayerForm');
 
 m.route(document.body,"/league",{
     "/league":league,

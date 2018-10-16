@@ -1,6 +1,6 @@
 const m = require('mithril');
 
-let league = {
+const league = {
     teams:[],
     addTeam:function (rank, name, league) {
         return m.request({

@@ -15,7 +15,7 @@ let league = {
                     href: '/teams/' + team.id,
                     oncreate: m.route.link,
                     type: 'number'
-                },team.rank + "   " + team.name))
+                },team.rank + " -  " + team.name + "  -  " + team.league))
             }))
         ]
     }

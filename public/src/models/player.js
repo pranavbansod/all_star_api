@@ -1,6 +1,6 @@
 const m = require('mithril');
 
-let player = {
+const player = {
     number:'',
     name:'',
     position:'',

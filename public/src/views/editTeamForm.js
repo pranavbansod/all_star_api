@@ -1,9 +1,9 @@
 const m = require('mithril');
 
-let team = require('../models/team');
+const team = require('../models/team');
 
 
-let editTeamForm = {
+const editTeamForm = {
     display: 'none',
     view: function () {
         return m("div", {style: `display:${editTeamForm.display}`}, [

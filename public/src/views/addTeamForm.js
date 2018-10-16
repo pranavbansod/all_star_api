@@ -1,8 +1,8 @@
 const m = require('mithril');
 
-let league = require('../models/league');
+const league = require('../models/league');
 
-let addTeamForm = {
+const addTeamForm = {
     rank:'',
     name:'',
     league:'',

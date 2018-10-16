@@ -1,11 +1,11 @@
 const m = require('mithril');
 
-let team = require('../models/team');
-let editTeamForm = require('./editTeamForm');
-let addPlayerForm = require('./addPlayerForm');
-let players = require('./players.js');
+const team = require('../models/team');
+const editTeamForm = require('./editTeamForm');
+const addPlayerForm = require('./addPlayerForm');
+const players = require('./players.js');
 
-let teamView = {
+const teamView = {
     editButtonText: 'Edit',
     addPlayerButtonText: 'Add Player',
     oninit: function (vnode) {

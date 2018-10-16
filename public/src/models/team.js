@@ -1,6 +1,6 @@
 const m = require('mithril');
 
-let team = {
+const team = {
     id: '',
     rank: '',
     name: '',

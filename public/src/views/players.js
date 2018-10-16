@@ -1,9 +1,8 @@
 const m = require('mithril');
 
-let team = require('../models/team');
-let editPlayerForm = require('./editPlayerForm');
+const team = require('../models/team');
 
-let players = {
+const players = {
     oninit: function (vnode) {
         team.fetchPlayers(vnode.attrs.teamId);
     },

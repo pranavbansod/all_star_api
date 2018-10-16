@@ -1,8 +1,8 @@
 const m = require('mithril');
 
-let team = require('../models/team');
+const team = require('../models/team');
 
-let addPlayerForm = {
+const addPlayerForm = {
     display: 'none',
     number: '',
     name: '',
