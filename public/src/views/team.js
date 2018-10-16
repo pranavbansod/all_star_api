@@ -1,5 +1,6 @@
 const m = require('mithril');
 
+const league = require('../models/league');
 const team = require('../models/team');
 const editTeamForm = require('./editTeamForm');
 const addPlayerForm = require('./addPlayerForm');
@@ -20,8 +21,7 @@ const teamView = {
             m('h1', "Rank:" + team.rank + ",  Name: " + team.name + ",  League: " + team.league),
             m('button', {
                 onclick: function () {
-                    team.delete();
-                    window.location = '/';
+                    league.deleteTeam(vnode.attrs.teamId);
                 }
             }, "Delete"),
             m('button', {

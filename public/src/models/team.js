@@ -40,12 +40,6 @@ const team = {
             team.players = result
         })
     },
-    delete: function () {
-        return m.request({
-            method: 'delete',
-            url: `/teams/${team.id}`
-        })
-    },
     deletePlayer:function (playerId) {
         return m.request({
             method:'delete',
