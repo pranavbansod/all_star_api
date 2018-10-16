@@ -3,11 +3,11 @@ const m = require('mithril');
 const player = require('../models/player');
 
 const editPlayerForm = {
+    display: 'none',
     oninit: function (vnode) {
         let attrs = vnode.attrs;
         player.getPlayer(attrs.teamId, attrs.playerId)
     },
-    display: 'none',
     view: function (vnode) {
         return [
             m("h3", "Edit Player"),
