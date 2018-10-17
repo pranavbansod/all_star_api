@@ -6,7 +6,7 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :update, :destroy]
 
   def index
-    @players = Player.find_by_sql "SELECT * FROM players WHERE team_id = #{@team.id}"
+    @players = @team.players
     json_response(@players)
   end
 
@@ -66,10 +66,8 @@ class PlayersController < ApplicationController
   def set_player
     @player = Player.find(params[:id])
   end
-end
 
-private
-
-def player_not_found
-  json_response({error: "No player with id #{@player[:team_id]} in team with team id #{@team[:id]}"}, 404)
+  def player_not_found
+    json_response({error: "No player with id #{@player[:team_id]} in team with team id #{@team[:id]}"}, 404)
+  end
 end
